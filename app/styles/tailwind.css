@@ -1,0 +1,112 @@
+/**
+ * Configure Tailwind v4 in this file using CSS variables and directives:
+ * https://tailwindcss.com/blog/tailwindcss-v4-alpha#css-first-configuration 
+ */
+@import 'tailwindcss';
+@import 'tailwindcss/preflight' layer(base);
+@import 'tailwindcss/utilities' layer(utilities);
+
+@theme {
+  --color-*: initial;
+  --color-theme-vert: #51b795;
+  --color-theme-vert-fonce: #0c7552;
+  --color-theme-blue: #219aaa;
+  --color-theme-blue-fonce: #0d6773;
+  --color-theme-rouge: #e94870;
+  --color-theme-rouge-fonce: #a72646;
+  --color-theme-jaune: #fcc33f;
+  --color-theme-jaune-fonce: #cb9c2e;
+  --color-theme-mauve: #dcc1ff;
+  --color-theme-mauve-fonce: #b687f2;
+  --color-theme-gris: #efefef;
+  --color-theme-white: rgb(0, 0, 0);
+  --color-theme-noir: #1a1a1a;
+
+  --font-family-sans: 'Roboto', sans-serif;
+  --font-family-serif: 'Rhodium Libre', serif;
+
+  --shadow-custom-black: 10px 5px 0px black;
+}
+
+/* roboto-condensed-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/polices/roboto-condensed-v27-latin-regular.woff2')
+    format('woff2');
+}
+/* roboto-condensed-600 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../assets/polices/roboto-condensed-v27-latin-600.woff2')
+    format('woff2');
+}
+/* rhodium-libre-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Rhodium Libre';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/polices/rhodium-libre-v19-latin-regular.woff2')
+    format('woff2');
+}
+
+@layer utilities {
+  .bg-overlay {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  .font-sans {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .font-serif {
+    font-family: 'Rhodium Libre', serif;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 130s linear infinite;
+}
+
+.max-w-[1079px] {
+  max-width: 1079px;
+}
+
+@media (min-width: 640px) {
+  .sm\:text-lg {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:text-lg {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:text-lg {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xlg\:text-lg {
+    font-size: 1.125rem;
+  }
+}
