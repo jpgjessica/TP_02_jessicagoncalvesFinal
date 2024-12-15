@@ -45,3 +45,18 @@ export default function Faq() {
 //     }
 //   }
 // }
+
+const FAQ_QUERY = `#graphql
+query Faq{
+  metaobjects(first: 250, type: "faq"){
+    nodes {id
+    question: field(key: "faq_question"){
+      value
+    }
+    answer: field(key: "faq_answer"){
+      value
+    }
+    }
+  }
+}
+`;

@@ -92,3 +92,28 @@
 //       }
 //     }
 //   }
+
+const SECTION_DINAMIQUE_QUERY = `#graphql
+query SectionDinamique{
+    metaobjects(first: 250, type: "section_dinamique") {
+      nodes {
+        id
+        Titre: field(key: "article_title") {
+          value
+        }
+        Description: field(key: "article_description") {
+          value
+        }
+        Image: field(key: "article_image") {
+          value
+        }
+        Label_url: field(key: "article_link_label") {
+          value
+        }
+        Url: field(key: "article_link_url") {
+          value
+        }
+      }
+    }
+  }
+`;
