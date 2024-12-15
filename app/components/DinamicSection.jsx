@@ -79,3 +79,16 @@
 //         }
 //       }
 //   `;
+
+// {
+//     metaobjects(type: "section_dinamique") {
+//       edges {
+//         node {
+//           article_title
+//           article_description
+//           article_link_label
+//           article_link_url
+//         }
+//       }
+//     }
+//   }

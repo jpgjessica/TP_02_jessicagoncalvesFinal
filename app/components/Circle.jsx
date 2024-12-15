@@ -11,10 +11,10 @@ export default function Circle({
           isThumbnail ? 'w-[20px] h-[20px]' : 'w-[100px] h-[100px]'
         } rounded-full ${
           color == 0
-            ? 'bg-theme-mauve-fonce'
+            ? 'bg-theme-vert'
             : color == 1
-            ? 'bg-theme-rouge-fonce'
-            : 'bg-theme-vert-fonce'
+            ? 'bg-theme-jaune'
+            : 'bg-theme-rouge'
         } `}
         onClick={() => {
           if (isThumbnail == false) {

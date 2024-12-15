@@ -1,5 +1,4 @@
-import {useLoaderData} from '@remix-run/react';
-import {Link} from '@remix-run/react';
+import {useLoaderData, Link} from '@remix-run/react';
 import {Image, Money} from '@shopify/hydrogen';
 import AddToWishlist from '~/components/AddToWishlist';
 import {useState} from 'react';

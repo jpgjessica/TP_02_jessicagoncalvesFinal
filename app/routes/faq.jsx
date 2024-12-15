@@ -4,7 +4,6 @@ import Marquee from '~/components/Marquee';
 import {faqs} from '~/data/faqs';
 import Accordions from '~/components/Accordions';
 
-
 export default function Faq() {
   const [searchValue, setSearchValue] = useState('');
 
@@ -15,7 +14,7 @@ export default function Faq() {
   return (
     <div className="flex flex-col items-center justify-center px-4  max-w-[1079px] w-full mx-auto">
       <div className="flex flex-row justify-between items-center w-full gap-5">
-        <Marquee text="FAQ" className="font-family-serif"/>
+        <Marquee text="FAQ" className="font-family-serif" />
         <SearchInput onSearch={onSearch} />
       </div>
 
@@ -36,3 +35,13 @@ export default function Faq() {
     </div>
   );
 }
+
+// faqs: metaobjects(type: "faq") {
+//   edges {
+//     node {
+//       faq_id
+//       faq_question
+//       faq_answer
+//     }
+//   }
+// }
