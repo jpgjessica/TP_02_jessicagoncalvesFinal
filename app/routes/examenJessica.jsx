@@ -26,7 +26,7 @@ export default function examenJessica() {
 
   return (
     <div className="flex justify-center gap-14">
-      <div className="flex flex-row justify-center">
+      <div className="flex flex-row justify-center gap-36">
         <div className="flex flex-col gap-4">
           <div className="flex flex-row gap-4">
             <Button
