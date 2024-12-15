@@ -110,7 +110,7 @@ export default function Product() {
       <div className="product-main">
         <h1>{title}</h1>
         <AddToWishlist productId={product.id} />
-        <Ratings productId={product.id}/>
+        <Ratings productId={product.id} />
         <ProductPrice
           price={selectedVariant?.price}
           compareAtPrice={selectedVariant?.compareAtPrice}
@@ -120,11 +120,6 @@ export default function Product() {
           productOptions={productOptions}
           selectedVariant={selectedVariant}
         />
-        <br />
-        <br />
-        <p>
-          <strong>Description</strong>
-        </p>
         <br />
         <div dangerouslySetInnerHTML={{__html: descriptionHtml}} />
         <br />

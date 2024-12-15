@@ -1,8 +1,15 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import Button from './Button';
-import {RiArrowRightBoxLine} from '@remixicon/react';
+import {
+  RiArrowDropRightLine,
+  RiArrowGoForwardFill,
+  RiArrowGoForwardLine,
+  RiArrowRightBoxLine,
+  RiArrowRightLine,
+} from '@remixicon/react';
 import skate_blog01 from '~/assets/imgBlog/skate_blog01.jpg';
+import {NavLink} from '@remix-run/react';
 
 export default function Banner() {
   let navigate = useNavigate();
@@ -33,21 +40,25 @@ export default function Banner() {
         </p>
         <div className="flex flex-col md:flex-row gap-4">
           {/* Bouton principal */}
-          <Button
-            label="Nos produits"
-            onClick={() => routeChange('../collections/all')}
-            className="bg-theme-vert text-black border-black hover:bg-theme-vert-fonce font-sans"
-          >
-            <RiArrowRightBoxLine />
-          </Button>
+          <NavLink to="/collections/all">
+            <Button
+              label="Nos produits"
+              className="bg-theme-vert text-black
+              border-black hover:bg-theme-vert-fonce font-sans w-full"
+            >
+              <RiArrowRightLine />
+            </Button>
+          </NavLink>
           {/* Bouton secondaire */}
-          <Button
-            label="A propos de nous"
-            onClick={() => routeChange('../faq')}
-            className="bg-theme-jaune text-white border-white hover:bg-theme-jaune-fonce"
-          >
-            <RiArrowRightBoxLine />
-          </Button>
+          <NavLink to="/collections/all">
+            <Button
+              label="A propos"
+              className="bg-theme-jaune text-black
+              border-black hover:bg-theme-jaune-fonce font-sans w-full"
+            >
+              <RiArrowRightLine />
+            </Button>
+          </NavLink>
         </div>
       </div>
     </div>

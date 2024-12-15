@@ -2,9 +2,25 @@
  * Configure Tailwind v4 in this file using CSS variables and directives:
  * https://tailwindcss.com/blog/tailwindcss-v4-alpha#css-first-configuration 
  */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rhodium+Libre&display=swap');
 @import 'tailwindcss';
-@import 'tailwindcss/preflight' layer(base);
-@import 'tailwindcss/utilities' layer(utilities);
+
+h1,
+h2,
+h3,
+h4,
+h5,
+span {
+  font-family: var(--font-family-serif);
+}
+
+p,
+li,
+button {
+  font-family: var(--font-family-sans);
+}
 
 @theme {
   --color-*: initial;
@@ -109,4 +125,7 @@
   .xlg\:text-lg {
     font-size: 1.125rem;
   }
+}
+.footer_menu_personalise {
+  margin-bottom: 0;
 }

@@ -12,6 +12,12 @@ import {
  * @param {FooterProps}
  */
 export function Footer({footer: footerPromise, header, publicStoreDomain}) {
+  function getYear() {
+    const d = new Date();
+    d.getFullYear();
+    return d.getFullYear();
+  }
+
   return (
     <Suspense>
       <Await resolve={footerPromise}>
@@ -22,13 +28,18 @@ export function Footer({footer: footerPromise, header, publicStoreDomain}) {
                 className="bg-[#EFEFEF] w-full rounded-bl-[200px] md:rounded-bl-full h-full md:h-[350px] flex flex-col md:flex-row
                items-start gap-4 md:items-start md:justify-between p-16"
               >
-                <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-                  <img
-                    src={logo_WeW}
-                    className="w-[150px] md:mx-16  md:pt-16"
-                    alt="logo wheels and waffles"
-                  />
-                </NavLink>
+                <div className="flex flex-col items-center ">
+                  <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
+                    <img
+                      src={logo_WeW}
+                      className="w-[150px] md:mx-16"
+                      alt="logo wheels and waffles"
+                    />
+                  </NavLink>
+                  <div>
+                    <span>© Wheels & Whaffles {getYear()}</span>
+                  </div>
+                </div>
                 <FooterMenu
                   menu={footer.menu}
                   primaryDomainUrl={header.shop.primaryDomain.url}
@@ -38,7 +49,7 @@ export function Footer({footer: footerPromise, header, publicStoreDomain}) {
                   <h3 className="font-sans font-extrabold">
                     Heures d&apos;ouverture
                   </h3>
-                  <div className="flex flex-col m-0 p-0 text-sm w-full md:w-52">
+                  <div className="flex flex-col m-0 p-0 text-sm w-full">
                     <ul>
                       <li className="footer_menu_personalise">
                         lundi au jeudi 12:00-17:00
@@ -50,9 +61,12 @@ export function Footer({footer: footerPromise, header, publicStoreDomain}) {
                         samedi 12:00-17:00
                       </li>
                     </ul>
-                    <span>
+                  </div>
+                  <div className=" md:w-52">
+                    <h3 className="font-sans font-extrabold">Adresse</h3>
+                    <li className="text-sm list-none">
                       1234, Rue des Riders Montréal, QC H3B 2Y7 Canada
-                    </span>
+                    </li>
                   </div>
                 </div>
                 <div>
@@ -65,10 +79,10 @@ export function Footer({footer: footerPromise, header, publicStoreDomain}) {
                 </div>
                 <div className="flex flex-col items-start justify-start text-left w-fullmd:w-52">
                   <h3 className="font-sans font-extrabold">Infolettre</h3>
-                  <span className="text-sm mb-4">
+                  <p className="text-sm mb-4">
                     Inscrivez-vous pour recevoir nos offres spéciales avant les
                     autres.
-                  </span>
+                  </p>
                   <NewsletterInput />
                 </div>
               </div>

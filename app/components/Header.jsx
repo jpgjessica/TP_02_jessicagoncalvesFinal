@@ -16,7 +16,7 @@ import logo_WeW from '~/assets/logo_WeW.png';
 export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
   const {shop, menu} = header;
   return (
-    <header className="grid sticky top-0 left-0 z-50 bg-[#EFEFEF]">
+    <header className="grid sticky top-0 left-0 z-1 md:z-0 bg-[#EFEFEF]">
       <div className="flex justify-center items-center bg-theme-mauve-fonce font-bold p-2 text-theme-blanc">
         <span>Livraison gratuite sur tout achat de 150$ et +! </span>
       </div>
@@ -54,11 +54,9 @@ export function HeaderMenu({
   viewport,
   publicStoreDomain,
 }) {
-  const className = `header-menu-${viewport} flex items-center justify-evenly w-full m-0 px-32 uppercase`;
+  const className = `header-menu-${viewport} flex text-sm md:items-center md:justify-evenly md:w-full m-0 md:px-32 uppercase`;
   const {close} = useAside();
-
   const items = menu?.items || FALLBACK_HEADER_MENU.items;
-
   return (
     <nav className={className} role="navigation">
       {viewport === 'mobile' && (
@@ -95,8 +93,9 @@ export function HeaderMenu({
             >
               {item.title}
             </NavLink>
-            {/* Render separator unless it's the last item */}
-            {i < items.length - 1 && <span className="mx-2">|</span>}
+            {i < items.length - 1 && (
+              <span className="hidden md:inline mx-2">|</span>
+            )}
           </React.Fragment>
         );
       })}
@@ -150,6 +149,7 @@ function CartBadge({count}) {
 
   return (
     <a
+      className="flex text-sm font-extrabold"
       href="/cart"
       onClick={(e) => {
         e.preventDefault();
@@ -162,7 +162,8 @@ function CartBadge({count}) {
         });
       }}
     >
-      Cart {count === null ? <span>&nbsp;</span> : count}
+      <RiShoppingCartFill size={28} className="cursor-pointer" />{' '}
+      {count === null ? <span>&nbsp;</span> : count}
     </a>
   );
 }
@@ -174,7 +175,7 @@ function CartToggle({cart}) {
   return (
     <Suspense fallback={<CartBadge count={null} />}>
       <Await resolve={cart}>
-        <RiShoppingCartFill size={28} className="cursor-pointer" />
+        <CartBanner />
       </Await>
     </Suspense>
   );

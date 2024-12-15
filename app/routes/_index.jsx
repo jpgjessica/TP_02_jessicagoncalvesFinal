@@ -128,11 +128,15 @@ function RecommendedProducts({products}) {
                       <small>
                         <Money data={product.priceRange.minVariantPrice} />
                       </small>
+                      product.selectedOrFirstAvailableVariant
                       <AddToCartButton
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.preventDefault();
                           open('cart');
                         }}
-                      ></AddToCartButton>
+                      >
+                        Ajouter au panier
+                      </AddToCartButton>
                     </Link>
                   ))
                 : null}
