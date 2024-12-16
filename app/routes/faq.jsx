@@ -3,9 +3,16 @@ import SearchInput from '~/components/SearchInput';
 import Marquee from '~/components/Marquee';
 import {faqs} from '~/data/faqs';
 import Accordions from '~/components/Accordions';
+import {useLoaderData} from '@remix-run/react';
+
+export async function loader({context}) {
+  const data = await context.storefront.query(FAQ_QUERY, {});
+  return {products: data.nodes};
+}
 
 export default function Faq() {
   const [searchValue, setSearchValue] = useState('');
+  const [data, setData] = useState(useLoaderData());
 
   function onSearch(e) {
     setSearchValue(e.target.value);

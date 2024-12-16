@@ -2,8 +2,8 @@ import Circle from './Circle';
 
 export default function CircleGrid({
   isThumbnail = false,
-  circlesColor = [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  onColorChange = () => {},
+  circlesColor,
+  onColorChange,
 }) {
   return (
     <div
@@ -15,7 +15,7 @@ export default function CircleGrid({
         <Circle
           key={i}
           color={circleColor}
-          i={i}
+          index={i}
           onColorChange={onColorChange}
           isThumbnail={isThumbnail}
         />

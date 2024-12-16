@@ -1,8 +1,8 @@
 export default function Circle({
   color,
-  i,
+  index,
   isThumbnail = false,
-  onColorChange = () => {},
+  onColorChange,
 }) {
   return (
     <>
@@ -18,7 +18,7 @@ export default function Circle({
         } `}
         onClick={() => {
           if (isThumbnail == false) {
-            onColorChange(i, color + 1);
+            onColorChange(index, color + 1);
           }
         }}
       ></button>
