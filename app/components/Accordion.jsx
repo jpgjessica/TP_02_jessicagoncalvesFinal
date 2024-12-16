@@ -6,11 +6,6 @@ export default function Accordion({
   isOpen = false,
   onClick = () => {},
 }) {
-  // const [isOpen, setIsOpen] = useState(false);
-  // function onClick() {
-  //   setIsOpen(!isOpen);
-  // }
-
   return (
     <div className="w-full border-b border-black pb-3 font-sans">
       <button

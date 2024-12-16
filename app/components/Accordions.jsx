@@ -5,6 +5,10 @@ export default function Accordions({accordions = []}) {
   const [currentAccordionId, setCurrentAccordionId] = useState(0);
 
   function onAccordionClick(accordionId) {
+    if (currentAccordionId == accordionId) {
+      setCurrentAccordionId(0);
+      return;
+    }
     setCurrentAccordionId(accordionId);
   }
 

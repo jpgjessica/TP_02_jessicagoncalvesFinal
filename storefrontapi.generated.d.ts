@@ -688,6 +688,26 @@ export type PageQuery = {
   >;
 };
 
+export type PartenairesQueryVariables = StorefrontAPI.Exact<{
+  [key: string]: never;
+}>;
+
+export type PartenairesQuery = {
+  metaobjects: {
+    nodes: Array<
+      Pick<StorefrontAPI.Metaobject, 'id'> & {
+        Name?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.MetaobjectField, 'value'>
+        >;
+        LogoImage?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.MetaobjectField, 'value'>
+        >;
+        Url?: StorefrontAPI.Maybe<Pick<StorefrontAPI.MetaobjectField, 'value'>>;
+      }
+    >;
+  };
+};
+
 export type PolicyFragment = Pick<
   StorefrontAPI.ShopPolicy,
   'body' | 'handle' | 'id' | 'title' | 'url'
@@ -1289,6 +1309,10 @@ interface GeneratedQueryTypes {
   '#graphql\n  query Page(\n    $language: LanguageCode,\n    $country: CountryCode,\n    $handle: String!\n  )\n  @inContext(language: $language, country: $country) {\n    page(handle: $handle) {\n      id\n      title\n      body\n      seo {\n        description\n        title\n      }\n    }\n  }\n': {
     return: PageQuery;
     variables: PageQueryVariables;
+  };
+  '#graphql\nquery partenaires {\n  metaobjects(first: 250, type: "partenaires") {\n    nodes {\n      id\n      Name: field(key: "partner_name") {\n        value\n      }\n      LogoImage: field(key: "partner_logo") {\n        value\n      }\n      Url: field(key: "partner_website_url") {\n        value\n      }\n    }\n  }\n}': {
+    return: PartenairesQuery;
+    variables: PartenairesQueryVariables;
   };
   '#graphql\n  fragment Policy on ShopPolicy {\n    body\n    handle\n    id\n    title\n    url\n  }\n  query Policy(\n    $country: CountryCode\n    $language: LanguageCode\n    $privacyPolicy: Boolean!\n    $refundPolicy: Boolean!\n    $shippingPolicy: Boolean!\n    $termsOfService: Boolean!\n  ) @inContext(language: $language, country: $country) {\n    shop {\n      privacyPolicy @include(if: $privacyPolicy) {\n        ...Policy\n      }\n      shippingPolicy @include(if: $shippingPolicy) {\n        ...Policy\n      }\n      termsOfService @include(if: $termsOfService) {\n        ...Policy\n      }\n      refundPolicy @include(if: $refundPolicy) {\n        ...Policy\n      }\n    }\n  }\n': {
     return: PolicyQuery;

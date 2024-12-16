@@ -1,18 +1,17 @@
 import {useState} from 'react';
 import SearchInput from '~/components/SearchInput';
 import Marquee from '~/components/Marquee';
-import {faqs} from '~/data/faqs';
 import Accordions from '~/components/Accordions';
 import {useLoaderData} from '@remix-run/react';
 
 export async function loader({context}) {
   const data = await context.storefront.query(FAQ_QUERY, {});
-  return {products: data.nodes};
+  return {faqs: data.metaobjects.nodes};
 }
 
 export default function Faq() {
   const [searchValue, setSearchValue] = useState('');
-  const [data, setData] = useState(useLoaderData());
+  const faqs = useLoaderData().faqs;
 
   function onSearch(e) {
     setSearchValue(e.target.value);
@@ -32,26 +31,20 @@ export default function Faq() {
               if (!searchValue) {
                 return true;
               }
-              return faq.question.includes(searchValue);
+              return faq.question.value.includes(searchValue);
             })
             .map((faq) => {
-              return {id: faq.id, title: faq.question, content: faq.answer};
+              return {
+                id: faq.id,
+                title: faq.question.value,
+                content: faq.answer.value,
+              };
             })}
         />
       </div>
     </div>
   );
 }
-
-// faqs: metaobjects(type: "faq") {
-//   edges {
-//     node {
-//       faq_id
-//       faq_question
-//       faq_answer
-//     }
-//   }
-// }
 
 const FAQ_QUERY = `#graphql
 query Faq{
