@@ -41,25 +41,27 @@ export default function Wishlist() {
 
   return (
     <div className="grid grid-cols-5 gap-5">
-      {dataProducts.products.map((product) => (
-        <Link
-          key={product.id}
-          className="recommended-product"
-          to={`/products/${product.handle}`}
-        >
-          <Image
-            alt={product.featuredImage.altText || product.title}
-            aspectRatio="1/1"
-            src={product.featuredImage.url}
-            sizes="(min-width: 45em) 20vw, 50vw"
-          />
-          <h4>{product.title}</h4>
-          <AddToWishlist productId={product.id} onRemove={removeProduct} />
-          <small>
-            <Money data={product.priceRange.minVariantPrice} />
-          </small>
-        </Link>
-      ))}
+      {dataProducts.products
+        .filter((product) => product)
+        .map((product) => (
+          <Link
+            key={product.id}
+            className="recommended-product"
+            to={`/products/${product.handle}`}
+          >
+            <Image
+              alt={product.featuredImage.altText || product.title}
+              aspectRatio="1/1"
+              src={product.featuredImage.url}
+              sizes="(min-width: 45em) 20vw, 50vw"
+            />
+            <h4>{product.title}</h4>
+            <AddToWishlist productId={product.id} onRemove={removeProduct} />
+            <small>
+              <Money data={product.priceRange.minVariantPrice} />
+            </small>
+          </Link>
+        ))}
     </div>
   );
 }
