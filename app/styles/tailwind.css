@@ -8,7 +8,6 @@
 @import 'tailwindcss';
 
 h1,
-h2,
 h3,
 h4,
 h5,
@@ -35,7 +34,7 @@ button {
   --color-theme-mauve: #dcc1ff;
   --color-theme-mauve-fonce: #b687f2;
   --color-theme-gris: #efefef;
-  --color-theme-white: rgb(0, 0, 0);
+  --color-theme-white: #fff;
   --color-theme-noir: #1a1a1a;
 
   --font-family-sans: 'Roboto', sans-serif;
@@ -79,7 +78,6 @@ button {
   .font-sans {
     font-family: 'Roboto', sans-serif;
   }
-
   .font-serif {
     font-family: 'Rhodium Libre', serif;
   }

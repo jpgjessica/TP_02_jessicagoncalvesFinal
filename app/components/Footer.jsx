@@ -26,7 +26,7 @@ export function Footer({footer: footerPromise, header, publicStoreDomain}) {
             <div className="bg-theme-noir w-full h-full md:h-[350px]">
               <div
                 className="bg-[#EFEFEF] w-full rounded-bl-[200px] md:rounded-bl-full h-full md:h-[350px] flex flex-col md:flex-row
-               items-start gap-4 md:items-start md:justify-between p-16"
+              items-start gap-4 md:items-start md:justify-between p-16"
               >
                 <div className="flex flex-col items-center ">
                   <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>

@@ -112,7 +112,7 @@ function HeaderCtas({isLoggedIn, cart}) {
       <NavLink to="/wishlist" aria-label="Wishlist">
         <RiHeart3Line size={28} className="cursor-pointer" />
       </NavLink>
-      <RiSearch2Line size={28} className="cursor-pointer" />
+      <SearchToggle />
       <CartToggle cart={cart} />
       <HeaderMenuMobileToggle />
     </nav>
@@ -135,7 +135,7 @@ function SearchToggle() {
   const {open} = useAside();
   return (
     <button className="reset" onClick={() => open('search')}>
-      Search
+      <RiSearch2Line size={28} className="cursor-pointer" />
     </button>
   );
 }

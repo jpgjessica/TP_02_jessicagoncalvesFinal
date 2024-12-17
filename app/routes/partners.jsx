@@ -27,7 +27,6 @@ export default function Partners() {
   );
 }
 
-// GraphQL Query
 const PARTNERS_QUERY = `#graphql
 query partenaires {
   metaobjects(first: 250, type: "partenaires") {

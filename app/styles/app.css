@@ -354,12 +354,22 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .recommended-products-grid {
+  width: 100%;
   display: grid;
   grid-gap: 1.5rem;
   grid-template-columns: repeat(2, 1fr);
   @media (min-width: 45em) {
     grid-template-columns: repeat(4, 1fr);
+    grid-gap: 3rem;
   }
+}
+.recommended-product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 1rem;
+  background-color: #fff;
 }
 
 .recommended-product img {

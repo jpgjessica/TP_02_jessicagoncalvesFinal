@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {RiStarLine} from '@remixicon/react';
-import {RiStarFill} from '@remixicon/react';
+import {RiStarFill, RiStarLine} from '@remixicon/react';
 import Cookies from 'js-cookie';
 
 export default function Ratings(productId) {

@@ -45,7 +45,7 @@ const AddToWishlist = ({productId, onRemove = (productId) => {}}) => {
       ) : (
         <RiHeart3Line className="icon icon-outline" />
       )}
-      {isInWishlist ? 'Retirer de la Wishlist' : 'Ajouter à la Wishlist'}
+      {/* {isInWishlist ? 'Retirer de la Wishlist' : 'Ajouter à la Wishlist'} */}
     </button>
   );
 };

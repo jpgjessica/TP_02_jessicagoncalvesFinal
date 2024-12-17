@@ -1,119 +1,61 @@
-// import {RiArrowLeftBoxFill, RiArrowRightBoxFill} from '@remixicon/react';
-// import {useLoaderData} from '@remix-run/react';
-// import {useState} from 'react';
+import {RiArrowLeftBoxFill, RiArrowRightBoxFill} from '@remixicon/react';
+import {useState} from 'react';
 
-// export async function loader({context}) {
-//   const response = await context.storefront.query(ARTICLES_QUERY);
-//   console.log(response);
-//   return response.data.metaobjects.nodes || [];
-// }
+export default function DinamicSection({sections}) {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-// export default function DinamicSection() {
-//   const [currentIndex, setCurrentIndex] = useState(0);
-//   const response = useLoaderData();
-//   const items = response.map((edge) =>
-//     edge.node[0].fields.reduce(
-//       (acc, field) => ({
-//         ...acc,
-//         [field.key]: field.value,
-//       }),
-//       {},
-//     ),
-//   );
+  const items = sections.map((section) => ({
+    id: section.id,
+    titre: section.Titre?.value || 'Titre indisponible',
+    description: section.Description?.value || '',
+    image: section.Image?.value || '',
+    labelUrl: section.Label_url?.value || 'En savoir plus',
+    url: section.Url?.value || '#',
+  }));
 
-//   const currentItem = items[currentIndex];
-//   const handlePrev = () => {
-//     setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
-//   };
+  const currentItem = items[currentIndex];
 
-//   const handleNext = () => {
-//     setCurrentIndex((prev) => (prev + 1) % items.length);
-//   };
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
+  };
 
-//   return (
-//     <div className="relative w-full p-4 bg-gray-100">
-//       {/* Section affichée */}
-//       <div className="flex flex-col items-center text-center">
-//         <h2 className="text-xl font-bold mb-2">{currentItem.titre}</h2>
-//         <img
-//           src={currentItem.image}
-//           alt={currentItem.titre}
-//           className="w-64 h-64 object-cover mb-4"
-//         />
-//         <p className="mb-4">{currentItem.description}</p>
-//         <a
-//           href={currentItem.lien}
-//           className="text-blue-600 underline"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           {currentItem.description}
-//         </a>
-//       </div>
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % items.length);
+  };
 
-//       {/* Boutons de navigation */}
-//       <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
-//         <button onClick={handlePrev}>
-//           <RiArrowLeftBoxFill className="w-6 h-6 text-gray-600" />
-//         </button>
-//       </div>
-//       <div className="absolute top-1/2 right-4 transform -translate-y-1/2">
-//         <button onClick={handleNext}>
-//           <RiArrowRightBoxFill className="w-6 h-6 text-gray-600" />
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }
-
-// const ARTICLES_QUERY = `#graphql
-//     query dinamicSectionQuery {
-//       metaobjects(type: "section_dinamique", first: 250) {
-//           nodes {
-//             id
-//             title:field(key:"title"){value}
-//             description: field(key:"description"){value}
-//             linkLabel :field(key:"title"){value}
-//             linkUrl:field(key:"title"){value}
-//           }
-//         }
-//       }
-//   `;
-
-// {
-//     metaobjects(type: "section_dinamique") {
-//       edges {
-//         node {
-//           article_title
-//           article_description
-//           article_link_label
-//           article_link_url
-//         }
-//       }
-//     }
-//   }
-
-const SECTION_DINAMIQUE_QUERY = `#graphql
-query SectionDinamique{
-    metaobjects(first: 250, type: "section_dinamique") {
-      nodes {
-        id
-        Titre: field(key: "article_title") {
-          value
-        }
-        Description: field(key: "article_description") {
-          value
-        }
-        Image: field(key: "article_image") {
-          value
-        }
-        Label_url: field(key: "article_link_label") {
-          value
-        }
-        Url: field(key: "article_link_url") {
-          value
-        }
-      }
-    }
-  }
-`;
+  return (
+    <div className="relative w-full bg-gray-100 text-gray-800 py-6">
+      <div className="flex flex-row items-center justify-between w-full px-36">
+        <div className="flex-1 ">
+          <h2 className="text-lg font-bold mb-2">{currentItem.titre}</h2>
+          <p className="text-sm mb-4 w-52">{currentItem.description}</p>
+          <a
+            href={currentItem.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 underline"
+          >
+            {currentItem.labelUrl}
+          </a>
+        </div>
+        {currentItem.image && (
+          <img
+            src={currentItem.image}
+            alt={currentItem.titre}
+            className="w-96 h-auto object-cover rounded-lg ml-6"
+          />
+        )}
+      </div>
+      <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
+        <button onClick={handlePrev}>
+          <RiArrowLeftBoxFill className="w-8 h-8 text-gray-600 hover:text-gray-800 cursor-pointer" />
+        </button>
+      </div>
+      <div className="absolute top-1/2 right-4 transform -translate-y-1/2">
+        <button onClick={handleNext}>
+          <RiArrowRightBoxFill className="w-8 h-8 text-gray-600 hover:text-gray-800 cursor-pointer" />
+        </button>
+      </div>
+    </div>
+  );
+}

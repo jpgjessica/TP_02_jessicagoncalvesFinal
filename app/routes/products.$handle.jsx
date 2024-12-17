@@ -13,6 +13,7 @@ import {ProductImage} from '~/components/ProductImage';
 import {ProductForm} from '~/components/ProductForm';
 import AddToWishlist from '~/components/AddToWishlist';
 import Ratings from '~/components/Ratings';
+import CommentSection from '~/components/CommentSection';
 
 /**
  * @type {MetaFunction<typeof loader>}
@@ -139,6 +140,7 @@ export default function Product() {
           ],
         }}
       />
+      <CommentSection productTitle={product.title} productId={product.id} />
     </div>
   );
 }

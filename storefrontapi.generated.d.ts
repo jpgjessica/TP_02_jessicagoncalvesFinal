@@ -3,32 +3,6 @@
 /* eslint-disable */
 import type * as StorefrontAPI from '@shopify/hydrogen/storefront-api-types';
 
-export type SectionDinamiqueQueryVariables = StorefrontAPI.Exact<{
-  [key: string]: never;
-}>;
-
-export type SectionDinamiqueQuery = {
-  metaobjects: {
-    nodes: Array<
-      Pick<StorefrontAPI.Metaobject, 'id'> & {
-        Titre?: StorefrontAPI.Maybe<
-          Pick<StorefrontAPI.MetaobjectField, 'value'>
-        >;
-        Description?: StorefrontAPI.Maybe<
-          Pick<StorefrontAPI.MetaobjectField, 'value'>
-        >;
-        Image?: StorefrontAPI.Maybe<
-          Pick<StorefrontAPI.MetaobjectField, 'value'>
-        >;
-        Label_url?: StorefrontAPI.Maybe<
-          Pick<StorefrontAPI.MetaobjectField, 'value'>
-        >;
-        Url?: StorefrontAPI.Maybe<Pick<StorefrontAPI.MetaobjectField, 'value'>>;
-      }
-    >;
-  };
-};
-
 export type MoneyFragment = Pick<
   StorefrontAPI.MoneyV2,
   'currencyCode' | 'amount'
@@ -655,6 +629,32 @@ export type CatalogQuery = {
   };
 };
 
+export type ContactQueryVariables = StorefrontAPI.Exact<{[key: string]: never}>;
+
+export type ContactQuery = {
+  metaobjects: {
+    nodes: Array<
+      Pick<StorefrontAPI.Metaobject, 'id'> & {
+        Name?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.MetaobjectField, 'value'>
+        >;
+        Email?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.MetaobjectField, 'value'>
+        >;
+        Phone?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.MetaobjectField, 'value'>
+        >;
+        Adresse?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.MetaobjectField, 'value'>
+        >;
+        OpenHours?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.MetaobjectField, 'value'>
+        >;
+      }
+    >;
+  };
+};
+
 export type FaqQueryVariables = StorefrontAPI.Exact<{[key: string]: never}>;
 
 export type FaqQuery = {
@@ -667,6 +667,32 @@ export type FaqQuery = {
         answer?: StorefrontAPI.Maybe<
           Pick<StorefrontAPI.MetaobjectField, 'value'>
         >;
+      }
+    >;
+  };
+};
+
+export type SectionDinamiqueQueryVariables = StorefrontAPI.Exact<{
+  [key: string]: never;
+}>;
+
+export type SectionDinamiqueQuery = {
+  metaobjects: {
+    nodes: Array<
+      Pick<StorefrontAPI.Metaobject, 'id'> & {
+        Titre?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.MetaobjectField, 'value'>
+        >;
+        Description?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.MetaobjectField, 'value'>
+        >;
+        Image?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.MetaobjectField, 'value'>
+        >;
+        Label_url?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.MetaobjectField, 'value'>
+        >;
+        Url?: StorefrontAPI.Maybe<Pick<StorefrontAPI.MetaobjectField, 'value'>>;
       }
     >;
   };
@@ -1254,10 +1280,6 @@ export type ProductsQuery = {
 };
 
 interface GeneratedQueryTypes {
-  '#graphql\nquery SectionDinamique{\n    metaobjects(first: 250, type: "section_dinamique") {\n      nodes {\n        id\n        Titre: field(key: "article_title") {\n          value\n        }\n        Description: field(key: "article_description") {\n          value\n        }\n        Image: field(key: "article_image") {\n          value\n        }\n        Label_url: field(key: "article_link_label") {\n          value\n        }\n        Url: field(key: "article_link_url") {\n          value\n        }\n      }\n    }\n  }\n': {
-    return: SectionDinamiqueQuery;
-    variables: SectionDinamiqueQueryVariables;
-  };
   '#graphql\n  fragment Shop on Shop {\n    id\n    name\n    description\n    primaryDomain {\n      url\n    }\n    brand {\n      logo {\n        image {\n          url\n        }\n      }\n    }\n  }\n  query Header(\n    $country: CountryCode\n    $headerMenuHandle: String!\n    $language: LanguageCode\n  ) @inContext(language: $language, country: $country) {\n    shop {\n      ...Shop\n    }\n    menu(handle: $headerMenuHandle) {\n      ...Menu\n    }\n  }\n  #graphql\n  fragment MenuItem on MenuItem {\n    id\n    resourceId\n    tags\n    title\n    type\n    url\n  }\n  fragment ChildMenuItem on MenuItem {\n    ...MenuItem\n  }\n  fragment ParentMenuItem on MenuItem {\n    ...MenuItem\n    items {\n      ...ChildMenuItem\n    }\n  }\n  fragment Menu on Menu {\n    id\n    items {\n      ...ParentMenuItem\n    }\n  }\n\n': {
     return: HeaderQuery;
     variables: HeaderQueryVariables;
@@ -1302,9 +1324,17 @@ interface GeneratedQueryTypes {
     return: CatalogQuery;
     variables: CatalogQueryVariables;
   };
+  '#graphql\nquery contact {\n  metaobjects(first: 250, type: "contact") {\n    nodes {\n      id\n      Name: field(key: "contact_name") {\n        value\n      }\n      Email: field(key: "contact_email") {\n        value\n      }\n      Phone: field(key: "contact_phone") {\n        value\n      }\n      Adresse: field(key: "contact_address") {\n        value\n      }\n      OpenHours: field(key: "contact_open_hours") {\n        value\n      }\n    }\n  }\n}': {
+    return: ContactQuery;
+    variables: ContactQueryVariables;
+  };
   '#graphql\nquery Faq{\n  metaobjects(first: 250, type: "faq"){\n    nodes {id\n    question: field(key: "faq_question"){\n      value\n    }\n    answer: field(key: "faq_answer"){\n      value\n    }\n    }\n  }\n}\n': {
     return: FaqQuery;
     variables: FaqQueryVariables;
+  };
+  '#graphql\nquery SectionDinamique {\n  metaobjects(first: 250, type: "section_dinamique") {\n    nodes {\n      id\n      Titre: field(key: "article_title") {\n        value\n      }\n      Description: field(key: "article_description") {\n        value\n      }\n      Image: field(key: "article_image") {\n        value\n      }\n      Label_url: field(key: "article_link_label") {\n        value\n      }\n      Url: field(key: "article_link_url") {\n        value\n      }\n    }\n  }\n}': {
+    return: SectionDinamiqueQuery;
+    variables: SectionDinamiqueQueryVariables;
   };
   '#graphql\n  query Page(\n    $language: LanguageCode,\n    $country: CountryCode,\n    $handle: String!\n  )\n  @inContext(language: $language, country: $country) {\n    page(handle: $handle) {\n      id\n      title\n      body\n      seo {\n        description\n        title\n      }\n    }\n  }\n': {
     return: PageQuery;

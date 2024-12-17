@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import Button from './Button'; // Import du bouton
-import Modal from './Modal'; // Import du modal
+import Button from './Button';
+import Modal from './Modal';
 
 export default function NewsletterInput() {
   const [email, setEmail] = useState('');
@@ -11,25 +11,23 @@ export default function NewsletterInput() {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Empêche le comportement par défaut du formulaire
+    event.preventDefault();
     if (email.trim()) {
-      setShowModal(true); // Affiche le modal
-      setEmail(''); // Réinitialise l'email
+      setShowModal(true);
+      setEmail('');
     }
   };
 
   const closeModal = () => {
-    setShowModal(false); // Ferme le modal
+    setShowModal(false);
   };
 
   return (
     <div className="flex items-center w-full max-w-md">
-      {/* Formulaire */}
       <form
         onSubmit={handleSubmit}
         className="flex flex-col md:flex-row w-full items-center gap-2"
       >
-        {/* Input */}
         <input
           type="email"
           placeholder="Votre courriel"
@@ -37,12 +35,8 @@ export default function NewsletterInput() {
           onInput={handleInput}
           className="p-2 rounded-full border border-gray-300 w-full"
         />
-
-        {/* Bouton */}
         <Button type="submit" label="S'inscrire" />
       </form>
-
-      {/* Modal */}
       {showModal && (
         <Modal
           title="Merci pour votre inscription !"

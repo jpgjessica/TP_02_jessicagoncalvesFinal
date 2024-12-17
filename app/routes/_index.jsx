@@ -6,6 +6,8 @@ import AddToWishlist from '~/components/AddToWishlist';
 import {AddToCartButton} from '~/components/AddToCartButton';
 import {useAside} from '~/components/Aside';
 import Banner from '~/components/Banniere';
+import AttributesSection from '~/components/AttributeSection';
+import Button from '~/components/Button';
 
 /**
  * @type {MetaFunction}
@@ -70,6 +72,30 @@ export default function Homepage() {
     <div className="home">
       <Banner />
       <RecommendedProducts products={data.recommendedProducts} />
+      <AttributesSection className="flex flex-row" />
+      <Link to="/collections/cyber-week">
+        <div className="bg-theme-noir grid md:grid-cols-2 gap-16 md:flex-row text-theme-gris m-0 p-16">
+          <div>
+            <h2 className="relative text-2xl md:text-5xl font-bold mb-2 uppercase font-sans text-left p-2 overflow-hidden group">
+              <span className="relative z-10">CyberWEEK</span>
+              <div className="absolute inset-0 bg-theme-mauve-fonce scale-x-0 transform origin-bottom-left transition-transform duration-300 ease-in-out group-hover:scale-x-100"></div>
+            </h2>
+            <p>
+              Découvrez la Collection Cyber Week, une sélection exclusive
+              d'offres irrésistibles pour les passionnés de style et de
+              performance. Profitez de réductions limitées sur nos meilleurs
+              produits, des essentiels de skateboard aux accessoires
+              incontournables, tous conçus pour vous offrir qualité et
+              durabilité. Que vous soyez débutant ou expert, cette collection
+              est l'occasion parfaite pour compléter votre équipement ou faire
+              plaisir à vos proches. Ne laissez pas passer ces deals uniques,
+              disponibles seulement pendant la Cyber Week – stocks limités,
+              faites vite ! 🚀
+            </p>
+          </div>
+          <FeaturedCollection collection={data.featuredCollection} />
+        </div>
+      </Link>
     </div>
   );
 }
@@ -105,45 +131,57 @@ function FeaturedCollection({collection}) {
 function RecommendedProducts({products}) {
   const {open} = useAside();
   return (
-    <div className="recommended-products">
-      <h2>Recommended Products</h2>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Await resolve={products}>
-          {(response) => (
-            <div className="recommended-products-grid">
-              {response
-                ? response.products.nodes.map((product) => (
-                    <Link
-                      key={product.id}
-                      className="recommended-product"
-                      to={`/products/${product.handle}`}
-                    >
-                      <Image
-                        data={product.images.nodes[0]}
-                        aspectRatio="1/1"
-                        sizes="(min-width: 45em) 20vw, 50vw"
-                      />
-                      <h4>{product.title}</h4>
-                      <AddToWishlist productId={product.id} />
-                      <small>
-                        <Money data={product.priceRange.minVariantPrice} />
-                      </small>
-                      product.selectedOrFirstAvailableVariant
-                      <AddToCartButton
-                        onClick={(e) => {
-                          e.preventDefault();
-                          open('cart');
-                        }}
+    <div
+      className="recommended-products flex
+    flex-col justify-center items-center md:px-16 w-full pt-12"
+    >
+      <h2 className="text-2xl">Nos coups de coeur</h2>
+      <div className="flex gap-28">
+        <Suspense fallback={<div>Loading...</div>}>
+          <Await resolve={products}>
+            {(response) => (
+              <div className="recommended-products-grid">
+                {response
+                  ? response.products.nodes.map((product) => (
+                      <Link
+                        key={product.id}
+                        className="recommended-product"
+                        to={`/products/${product.handle}`}
                       >
-                        Ajouter au panier
-                      </AddToCartButton>
-                    </Link>
-                  ))
-                : null}
-            </div>
-          )}
-        </Await>
-      </Suspense>
+                        <Image
+                          data={product.images.nodes[0]}
+                          aspectRatio="1/1"
+                          sizes="(min-width: 45em) 20vw, 50vw"
+                        />
+                        <div className="flex flex-col">
+                          <h4>{product.title}</h4>{' '}
+                          <div className="flex flex-row justify-between">
+                            {' '}
+                            <small>
+                              <Money
+                                data={product.priceRange.minVariantPrice}
+                              />
+                            </small>
+                            <AddToWishlist productId={product.id} />
+                          </div>
+                          <Button>
+                            <AddToCartButton
+                              onClick={(e) => {
+                                e.preventDefault();
+                                open('cart');
+                              }}
+                            ></AddToCartButton>
+                            <span>Ajouter au panier</span>
+                          </Button>
+                        </div>
+                      </Link>
+                    ))
+                  : null}
+              </div>
+            )}
+          </Await>
+        </Suspense>
+      </div>
       <br />
     </div>
   );
@@ -164,7 +202,7 @@ const FEATURED_COLLECTION_QUERY = `#graphql
   }
   query FeaturedCollection($country: CountryCode, $language: LanguageCode)
     @inContext(country: $country, language: $language) {
-    collections(first: 1, sortKey: UPDATED_AT, reverse: true) {
+    collections(first: 1, sortKey: UPDATED_AT, reverse: false) {
       nodes {
         ...FeaturedCollection
       }
