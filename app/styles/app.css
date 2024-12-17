@@ -425,7 +425,7 @@ button.reset:hover:not(:has(> *)) {
 .product {
   display: grid;
   @media (min-width: 45em) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-gap: 4rem;
   }
 }
@@ -441,7 +441,7 @@ button.reset:hover:not(:has(> *)) {
 
 .product-main {
   align-self: start;
-  position: sticky;
+  /* position: sticky; */
   top: 6rem;
 }
 

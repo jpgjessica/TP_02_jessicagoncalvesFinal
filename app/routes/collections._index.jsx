@@ -2,6 +2,7 @@ import {useLoaderData, Link} from '@remix-run/react';
 import {defer} from '@shopify/remix-oxygen';
 import {getPaginationVariables, Image} from '@shopify/hydrogen';
 import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
+import Marquee from '~/components/Marquee';
 
 /**
  * @param {LoaderFunctionArgs} args
@@ -51,8 +52,10 @@ export default function Collections() {
   const {collections} = useLoaderData();
 
   return (
-    <div className="collections">
-      <h1>Collections</h1>
+    <div className="collections md:mx-16 flex flex-col">
+      <div className="flex justify-center">
+        <Marquee text="Collections" className="font-family-serif" />
+      </div>
       <PaginatedResourceSection
         connection={collections}
         resourcesClassName="collections-grid"
@@ -77,22 +80,28 @@ export default function Collections() {
  */
 function CollectionItem({collection, index}) {
   return (
-    <Link
-      className="collection-item"
-      key={collection.id}
-      to={`/collections/${collection.handle}`}
-      prefetch="intent"
-    >
-      {collection?.image && (
-        <Image
-          alt={collection.image.altText || collection.title}
-          aspectRatio="1/1"
-          data={collection.image}
-          loading={index < 3 ? 'eager' : undefined}
-        />
-      )}
-      <h5>{collection.title}</h5>
-    </Link>
+    <div className="grid grid-cols">
+      <Link
+        className="collection-item flex flex-col justify-center items-center h-full"
+        key={collection.id}
+        to={`/collections/${collection.handle}`}
+        prefetch="intent"
+      >
+        {collection?.image && (
+          <Image
+            alt={collection.image.altText || collection.title}
+            aspectRatio="1/1"
+            data={collection.image}
+            loading={index < 3 ? 'eager' : undefined}
+          />
+        )}
+
+        <div className="relative text-2xl md:text-5xl font-bold mb-2 uppercase font-sans text-left p-2 overflow-hidden group">
+          <h5 className="text-2xl relative z-1">{collection.title}</h5>
+          <div className="absolute inset-0 bg-theme-mauve-fonce scale-x-0 transform origin-bottom-left transition-transform duration-300 ease-in-out group-hover:scale-x-100"></div>
+        </div>
+      </Link>
+    </div>
   );
 }
 

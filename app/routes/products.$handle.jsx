@@ -14,6 +14,7 @@ import {ProductForm} from '~/components/ProductForm';
 import AddToWishlist from '~/components/AddToWishlist';
 import Ratings from '~/components/Ratings';
 import CommentSection from '~/components/CommentSection';
+import Button from '~/components/Button';
 
 /**
  * @type {MetaFunction<typeof loader>}
@@ -106,41 +107,51 @@ export default function Product() {
   const {title, descriptionHtml} = product;
 
   return (
-    <div className="product">
-      <ProductImage image={selectedVariant?.image} />
-      <div className="product-main">
-        <h1>{title}</h1>
-        <AddToWishlist productId={product.id} />
-        <Ratings productId={product.id} />
-        <ProductPrice
-          price={selectedVariant?.price}
-          compareAtPrice={selectedVariant?.compareAtPrice}
-        />
-        <br />
-        <ProductForm
-          productOptions={productOptions}
-          selectedVariant={selectedVariant}
-        />
-        <br />
-        <div dangerouslySetInnerHTML={{__html: descriptionHtml}} />
-        <br />
+    <div className="product md:mx-16">
+      <div className="flex flex-col w-full justify-around">
+        <div className="product-main grid grid-cols-1 md:grid-cols-2 w-full gap-12">
+          <ProductImage image={selectedVariant?.image} />
+          <div>
+            <div className="flex flex-row justify-between mt-14 md:mt-0">
+              <h1 className="text-2xl">{title}</h1>
+              <AddToWishlist productId={product.id} />
+            </div>
+            <Ratings productId={product.id} />
+            <div className="mt-14">
+              <ProductPrice
+                price={selectedVariant?.price}
+                compareAtPrice={selectedVariant?.compareAtPrice}
+              />
+            </div>
+            <Button className="mb-12">
+              <br />
+              <ProductForm
+                productOptions={productOptions}
+                selectedVariant={selectedVariant}
+              />
+              <br />
+            </Button>
+            <div dangerouslySetInnerHTML={{__html: descriptionHtml}} />
+            <br />
+            <Analytics.ProductView
+              data={{
+                products: [
+                  {
+                    id: product.id,
+                    title: product.title,
+                    price: selectedVariant?.price.amount || '0',
+                    vendor: product.vendor,
+                    variantId: selectedVariant?.id || '',
+                    variantTitle: selectedVariant?.title || '',
+                    quantity: 1,
+                  },
+                ],
+              }}
+            />
+          </div>
+        </div>
+        <CommentSection productTitle={product.title} productId={product.id} />
       </div>
-      <Analytics.ProductView
-        data={{
-          products: [
-            {
-              id: product.id,
-              title: product.title,
-              price: selectedVariant?.price.amount || '0',
-              vendor: product.vendor,
-              variantId: selectedVariant?.id || '',
-              variantTitle: selectedVariant?.title || '',
-              quantity: 1,
-            },
-          ],
-        }}
-      />
-      <CommentSection productTitle={product.title} productId={product.id} />
     </div>
   );
 }

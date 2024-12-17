@@ -16,8 +16,8 @@ import logo_WeW from '~/assets/logo_WeW.png';
 export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
   const {shop, menu} = header;
   return (
-    <header className="grid sticky top-0 left-0 z-1 md:z-0 bg-[#EFEFEF]">
-      <div className="flex justify-center items-center bg-theme-mauve-fonce font-bold p-2 text-theme-blanc">
+    <header className="grid sticky top-0 left-0 z-2 md:z-3 bg-[#EFEFEF]">
+      <div className="flex justify-center items-center bg-theme-mauve-fonce font-bold p-2 text-theme-white">
         <span>Livraison gratuite sur tout achat de 150$ et +! </span>
       </div>
       <div className="flex md:items-center md:p-5 md:justify-center">

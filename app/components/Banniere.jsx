@@ -14,7 +14,7 @@ export default function Banner() {
       />
       <div className="md:absolute inset-0 bg-opacity-50 flex flex-col justify-center items-start p-4 md:pl-24">
         <h2 className="relative text-2xl md:text-5xl font-bold mb-2 uppercase font-sans text-left p-2 overflow-hidden group">
-          <span className="relative z-10">
+          <span className="relative z-1">
             Des <strong>boards</strong> qui <br />
             parlent de <strong>vous!</strong>
           </span>

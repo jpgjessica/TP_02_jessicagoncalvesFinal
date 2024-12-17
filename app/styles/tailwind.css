@@ -89,12 +89,16 @@ button {
   }
 
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
 }
 
+a:has(.partners) {
+  color: #fff;
+}
+
 .animate-marquee {
-  animation: marquee 130s linear infinite;
+  animation: marquee 70s linear infinite;
 }
 
 .max-w-[1079px] {

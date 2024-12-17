@@ -77,7 +77,7 @@ export default function Homepage() {
         <div className="bg-theme-noir grid md:grid-cols-2 gap-16 md:flex-row text-theme-gris m-0 p-16">
           <div>
             <h2 className="relative text-2xl md:text-5xl font-bold mb-2 uppercase font-sans text-left p-2 overflow-hidden group">
-              <span className="relative z-10">CyberWEEK</span>
+              <span className="relative z-2">CyberWEEK</span>
               <div className="absolute inset-0 bg-theme-mauve-fonce scale-x-0 transform origin-bottom-left transition-transform duration-300 ease-in-out group-hover:scale-x-100"></div>
             </h2>
             <p>
@@ -154,9 +154,8 @@ function RecommendedProducts({products}) {
                           sizes="(min-width: 45em) 20vw, 50vw"
                         />
                         <div className="flex flex-col">
-                          <h4>{product.title}</h4>{' '}
+                          <h4>{product.title}</h4>
                           <div className="flex flex-row justify-between">
-                            {' '}
                             <small>
                               <Money
                                 data={product.priceRange.minVariantPrice}

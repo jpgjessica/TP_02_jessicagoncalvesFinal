@@ -10,7 +10,7 @@ export default function Modal({title, message, onClose}) {
 
   return (
     <div
-      className="fixed inset-0 bg-theme-noir bg-overlay flex items-center justify-center z-100"
+      className="fixed inset-0 bg-theme-noir bg-overlay flex items-center justify-center z-110"
       onClick={handleBackgroundClick}
     >
       <div className="bg-theme-gris border-2 border-black rounded-lg p-6 w-[90%] max-w-md relative text-center">

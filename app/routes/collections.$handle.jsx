@@ -8,7 +8,10 @@ import {
 } from '@shopify/hydrogen';
 import {useVariantUrl} from '~/lib/variants';
 import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
-
+import Button from '~/components/Button';
+import {AddToCartButton} from '~/components/AddToCartButton';
+import AddToWishlist from '~/components/AddToWishlist';
+import Marquee from '~/components/Marquee';
 /**
  * @type {MetaFunction<typeof loader>}
  */
@@ -78,9 +81,19 @@ export default function Collection() {
   const {collection} = useLoaderData();
 
   return (
-    <div className="collection">
-      <h1>{collection.title}</h1>
-      <p className="collection-description">{collection.description}</p>
+    <div className="md:mx-16">
+      <div className="flex flex-col items-center justify-center">
+        <div className="collection grid md:grid-cols-2 w-full bg-theme-noir md:rounded-full mb-12 gap-4 md:gap-12 md:mx-16 items-center p-2">
+          <div>
+            <Marquee text={collection.title} className="font-family-serif" />
+          </div>
+          <div className="flex w-full justify-center">
+            <p className="collection-description w-full md:w-[500px] mb-12 text-theme-white text-center text-pretty">
+              {collection.description}
+            </p>
+          </div>
+        </div>
+      </div>
       <PaginatedResourceSection
         connection={collection.products}
         resourcesClassName="products-grid"
@@ -115,7 +128,7 @@ function ProductItem({product, loading}) {
   const variantUrl = useVariantUrl(product.handle);
   return (
     <Link
-      className="product-item"
+      className="product-item recommended-product"
       key={product.id}
       prefetch="intent"
       to={variantUrl}
@@ -129,10 +142,24 @@ function ProductItem({product, loading}) {
           sizes="(min-width: 45em) 400px, 100vw"
         />
       )}
-      <h4>{product.title}</h4>
-      <small>
-        <Money data={product.priceRange.minVariantPrice} />
-      </small>
+      <div className="flex flex-col">
+        <h4>{product.title}</h4>
+        <div className="flex flex-row justify-between">
+          <small>
+            <Money data={product.priceRange.minVariantPrice} />
+          </small>
+          <AddToWishlist productId={product.id} />
+        </div>
+        <Button>
+          <AddToCartButton
+            onClick={(e) => {
+              e.preventDefault();
+              open('cart');
+            }}
+          ></AddToCartButton>
+          <span>Ajouter au panier</span>
+        </Button>
+      </div>
     </Link>
   );
 }

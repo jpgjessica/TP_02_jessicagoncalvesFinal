@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import Modal from './Modal';
+import Button from './Button';
 
 export default function FormulaireContact() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -65,12 +66,7 @@ export default function FormulaireContact() {
           ></textarea>
         </div>
 
-        <button
-          type="submit"
-          className="bg-theme-jaune text-white py-2 px-4 rounded-md hover:bg-theme-bleu"
-        >
-          Envoyer
-        </button>
+        <Button type="submit">Envoyer</Button>
       </form>
       {isModalOpen && (
         <Modal

@@ -27,8 +27,8 @@ export default function Faq() {
       <div>
         <DinamicSection sections={useLoaderData().dinamicSectionInfo} />
       </div>
-      <div className="flex flex-col items-center justify-center px-4 max-w-[1079px] w-full mx-auto">
-        <div className="flex flex-row justify-between items-center w-full gap-5">
+      <div className="flex flex-col items-center justify-center px-4 max-w-[1079px] w-full mx-auto mt-4">
+        <div className="flex flex-col md:flex-row justify-between items-center w-full gap-5">
           <Marquee text="FAQ" className="font-family-serif" />
           <SearchInput onSearch={onSearch} />
         </div>
